@@ -1,0 +1,63 @@
+<div id="1">
+  <h1 id="2">Hello, <em id="3">World</em></h1>
+  <p id="4">
+    Welcome to wonderland. This is an
+    <span id="5">awesome</span> place.
+  </p>
+  <a href="#" id="6"><strong id="7">Enter</strong></a>
+  <div id="8"><p id="9"><a href="#" id="10">Go back</a></p></div>
+</div>
+
+<script>
+  function totalChildNodes(node) {
+    let total = node.childNodes.length;
+
+    for (let i = 0; i < node.childNodes.length; i += 1) {
+      total += totalChildNodes(node.childNodes[i]);
+    }
+
+    return total;
+  }
+
+  function childNodes(id) {
+    const rootNode = document.getElementById(id);
+    const direct = rootNode.childNodes.length;
+    const indirect = totalChildNodes(rootNode) - direct;
+
+    return [direct, indirect];
+  }
+</script>
+
+<!--
+  div#1  (9 direct, 21 total)
+  |-#text (\n)
+  |
+  |-h1#2   (2 direct, 3 total)
+  | |-#text ("Hello, ")
+  | |-em#3 (1 direct, 1 total)
+  | | |-#text ("World")
+  |
+  |-#text (\n)
+  |
+  |-p#4  (3 direct, 4 total)
+  | |-#text ("\nWelcome to wonderland. This is an\n")
+  | |-span#5 (1 direct, 1 total)
+  | | |-#text ("awesome")
+  | |
+  | |-#text ("place.\n")
+  |
+  |-#text (\n)
+  |
+  |-a#6 (1, 2)
+  | |-strong#7  (1, 1)
+  |   |-#text ("Enter")
+  |
+  |-#text (\n)
+  |
+  |-div#8 (1, 3)
+  | |-p#9 (1, 2)
+  |   |-a#10 (1, 1)
+  |     |-#text ("Go back")
+  |
+  |-#text (\n)
+-->

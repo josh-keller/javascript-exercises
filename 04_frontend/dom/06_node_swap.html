@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Node Swap</title>
+  <script>
+    function nodeSwap(id1, id2) {
+      const node1 = document.getElementById(id1);
+      const node2 = document.getElementById(id2);
+      if (!node1 || !node2 || node1.contains(node2) || node2.contains(node1)) {
+        return undefined;
+      }
+
+      const parent1 = node1.parentNode;
+      const parent2 = node2.parentNode;
+      const place1 = node1.nextSibling;
+      const place2 = node2.nextSibling;
+
+      parent1.insertBefore(node2, place1);
+      parent2.insertBefore(node1, place2);
+      return true;
+    }
+
+  </script>
+  </head>
+  <body>
+    <div id="1">
+      <div id="4"></div>
+      <div id="5">
+        <div id="6"></div>
+      </div>
+    </div>
+    <div id="2"></div>
+    <div id="3">
+      <div id="7"></div>
+      <div id="8"></div>
+      <div id="9"></div>
+    </div>
+  </body>
+</html>
